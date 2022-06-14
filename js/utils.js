@@ -57,3 +57,7 @@ function showAuth() {
   hideItem(userContent)
   showItem(auth)
 }
+
+var actionCodeSettings = {
+  url: 'http://localhost:5500/'
+}
