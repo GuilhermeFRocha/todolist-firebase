@@ -15,11 +15,15 @@ authForm.onsubmit = (event) =>{
  firebase.auth().onAuthStateChanged((user) => {
     hideItem(loading)
     if (user) {
-       console.log('logado');
-       
+      showUserContent (user) 
     } else {
-        console.log('Não logado');
+        showAuth ()
     }
  })
 
- 
+//  Funcao para deslogar
+function signOut () {
+    firebase.auth().signOut().catch((error) => {
+    
+    })
+}

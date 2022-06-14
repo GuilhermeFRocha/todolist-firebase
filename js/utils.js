@@ -5,6 +5,9 @@ var register = document.getElementById('register')
 var access = document.getElementById('access')
 
 var loading = document.getElementById('loading')
+var auth = document.getElementById('auth')
+var userContent = document.getElementById('userContent')
+var userEmail = document.getElementById('userEmail')
 
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
@@ -31,4 +34,20 @@ function showItem(element) {
 // Simpplifica a remoção de elementos da página
 function hideItem(element) {
   element.style.display = 'none'
+}
+
+// Mostrar conteudo para usuarios de autenticação
+function showUserContent(user) {
+  userEmail.innerHTML = user.email
+  hideItem(auth)
+  showItem(userContent)
+}
+
+// Mostrar conteudo para usuarios nao autenticação
+
+function showAuth() {
+  authForm.email.value = ''
+  authForm.password.value = ''
+  hideItem(userContent)
+  showItem(auth)
 }
