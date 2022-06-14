@@ -3,12 +3,12 @@ var authForm = document.getElementById('authForm')
 var authFormTitle = document.getElementById('authFormTitle')
 var register = document.getElementById('register')
 var access = document.getElementById('access')
-
 var loading = document.getElementById('loading')
 var auth = document.getElementById('auth')
 var userContent = document.getElementById('userContent')
 var userEmail = document.getElementById('userEmail')
-
+var sendEmailVerificationDiv  = document.getElementById('sendEmailVerificationDiv')
+var emailVerified  = document.getElementById('emailVerified')
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
@@ -38,13 +38,19 @@ function hideItem(element) {
 
 // Mostrar conteudo para usuarios de autenticação
 function showUserContent(user) {
+  if (user.emailVerified) {
+    emailVerified.innerHTML = 'Seu email está verificado'
+    hideItem(sendEmailVerificationDiv)
+   } else {
+    emailVerified.innerHTML = 'Seu email não está verificado'
+    showItem(sendEmailVerificationDiv)
+   }
   userEmail.innerHTML = user.email
   hideItem(auth)
   showItem(userContent)
 }
 
 // Mostrar conteudo para usuarios nao autenticação
-
 function showAuth() {
   authForm.email.value = ''
   authForm.password.value = ''

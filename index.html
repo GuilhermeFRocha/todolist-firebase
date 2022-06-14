@@ -18,8 +18,6 @@
       <img src="img/loading.gif" alt="loading">
     </div>
 
-
-
     <!--Conteúdo destinado para usuários não autenticados-->
     <div id="auth" class="center">
       <!--Formulário de autenticação-->
@@ -53,13 +51,16 @@
       <hr>
       <div id="userInfo" class="center">
         <p id="userEmail"></p>
+        <p id="emailVerified"></p>
+        <div id="sendEmailVerificationDiv">
+          <button  class="alternative" onclick="sendEmailVerification()">Verificar Email</button>
+        </div>
         <button class="alternative" onclick="signOut()">Sair</button>
       </div>
     </div>
   </div>
 
   <!--Recursos Firebase-->
-
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
   
