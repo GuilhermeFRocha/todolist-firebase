@@ -9,21 +9,26 @@ var userContent = document.getElementById('userContent')
 var userEmail = document.getElementById('userEmail')
 var sendEmailVerificationDiv  = document.getElementById('sendEmailVerificationDiv')
 var emailVerified  = document.getElementById('emailVerified')
+var passwordReset = document.getElementById('passwordReset')
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar conta'
   authFormTitle.innerHTML = 'Insira seus dados para se cadastrar'
-  hideItem(register)
-  showItem(access)
+  hideItem(register) // Ocultar o formulário de cadastro
+  hideItem(passwordReset) //Ocultar o campo de Reset de senha
+  showItem(access) // Exibir o formulário de acesso
+
 }
 
 // Alterar o formulário de autenticação para o acesso de contas já existentes
 function toggleToAccess() {
   authForm.submitAuthForm.innerHTML = 'Acessar'
   authFormTitle.innerHTML = 'Acesse a sua conta para continuar'
-  hideItem(access)
-  showItem(register)
+  hideItem(access)  // Ocultar o formulário de cadastro de conta
+  showItem(register) // Exibir o formulário de acesso de conta
+  showItem(passwordReset) //Mostrar o campo de Reset de senha
+
 }
 
 // Simpplifica a exibição de elementos da página
