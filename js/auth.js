@@ -95,3 +95,12 @@ function signInWithGitHub() {
     hideItem(loading)
   })
 }
+
+// Funçao que permite autentificaçao pelo facebook
+function signInWithFacebook() {
+  showItem(loading)
+  firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider()).catch((error) => {
+    alert(error)
+    hideItem(loading)
+  })
+}
