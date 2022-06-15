@@ -71,6 +71,25 @@ function showAuth() {
   showItem(auth)
 }
 
+// Centralizar e traduzir erros
+function showError(prefix ,error) {
+  console.log(error.code);
+  hideItem(loading)
+  switch (error.code) {
+    case 'auth/invalid-email':
+    case 'auth/wrong-password': alert(prefix + ' ' + 'Email ou Senha invalida')
+    break;
+    case 'auth/weak-password': alert(prefix + ' ' + 'Senha deve ter ao menos 6 caracteres')
+    break;
+    case 'auth/email-already-in-use': alert(prefix + ' ' + 'Email já esta em uso')
+    break;
+    case 'auth/popup-closet-by-user': alert(prefix + ' ' + 'O popup de autentiificaçao foi fechado antes da operaçao ser concluida')
+    break;
+  
+    default: alert(prefix + ' ' + error.message)
+  }
+}
+
 var actionCodeSettings = {
   url: 'http://localhost:5500/'
 }
