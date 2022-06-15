@@ -50,9 +50,12 @@ function showUserContent(user) {
     emailVerified.innerHTML = 'Seu email não está verificado'
     showItem(sendEmailVerificationDiv)
    }
-  userEmail.innerHTML = user.email
-  hideItem(auth)
-  showItem(userContent)
+
+    userImg.src = user.photoURL ?  user.photoURL  : 'img/unknownUser.png'
+    userName.innerHTML = user.displayName
+    userEmail.innerHTML = user.email
+    hideItem(auth)
+    showItem(userContent)
 }
 
 // Mostrar conteudo para usuarios nao autenticação

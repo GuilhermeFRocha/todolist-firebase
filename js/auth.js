@@ -77,3 +77,13 @@ function sendPasswordResetEmail() {
     alert('Preencha o campo')
   }
 }
+
+// Funçao que permite autentificaçao pelo google
+
+function signInWithGoogle () {
+  showItem(loading)
+  firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch((error) => {
+    alert(error)
+    hideItem(loading)
+  })
+}
