@@ -43,6 +43,10 @@ function hideItem(element) {
 
 // Mostrar conteudo para usuarios de autenticação
 function showUserContent(user) {
+  if (user.providerData[0].providerId != 'password') {
+    emailVerified.innerHTML = 'Autentificaçao por provedor confiavel'
+    hideItem(sendEmailVerificationDiv)
+  } else {
   if (user.emailVerified) {
     emailVerified.innerHTML = 'Seu email está verificado'
     hideItem(sendEmailVerificationDiv)
@@ -50,13 +54,14 @@ function showUserContent(user) {
     emailVerified.innerHTML = 'Seu email não está verificado'
     showItem(sendEmailVerificationDiv)
    }
-
+ }
     userImg.src = user.photoURL ?  user.photoURL  : 'img/unknownUser.png'
     userName.innerHTML = user.displayName
     userEmail.innerHTML = user.email
     hideItem(auth)
     showItem(userContent)
 }
+ 
 
 // Mostrar conteudo para usuarios nao autenticação
 function showAuth() {

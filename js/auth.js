@@ -79,10 +79,18 @@ function sendPasswordResetEmail() {
 }
 
 // Funçao que permite autentificaçao pelo google
-
 function signInWithGoogle () {
   showItem(loading)
   firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider()).catch((error) => {
+    alert(error)
+    hideItem(loading)
+  })
+}
+
+// Funçao que permite autentificaçao pelo github
+function signInWithGitHub() {
+  showItem(loading)
+  firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider()).catch((error) => {
     alert(error)
     hideItem(loading)
   })

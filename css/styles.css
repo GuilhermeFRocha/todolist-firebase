@@ -73,7 +73,7 @@ p {
 
 }
 
-button:hover {
+#auth img:hover {
   opacity: 0.75;
  }
 
