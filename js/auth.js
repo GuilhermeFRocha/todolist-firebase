@@ -104,9 +104,9 @@ function signInWithFacebook() {
     hideItem(loading)
   })
 }
-
+// Funçao que permite Atualizar nome de usuario
 function updateUserName () {
-  var newUserName = prompt(`Informe um novo nomde de usuario ${userName.innerHTML}`)
+  var newUserName = prompt(`Informe um novo nome de usuario ${userName.innerHTML}`)
   if (newUserName && newUserName != '') { 
     userName.innerHTML = newUserName
     showItem(loading)
@@ -119,5 +119,14 @@ function updateUserName () {
     })
   } else {
     alert('insira algo')
+  }
+}
+
+// Funçao que permite Remover contas de usuario
+function deleteUserAccount () {
+  var confirmation = confirm('Realmente deseja excluir sua conta')
+  if (confirmation) {
+    showItem(loading)
+    firebase.auth().currentUser.delete().then(() => {alert('Conta excluida com sucesso')}).catch((error) => {alert(error)}).finally(() => {hideItem(loading)})
   }
 }
