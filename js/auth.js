@@ -104,3 +104,20 @@ function signInWithFacebook() {
     hideItem(loading)
   })
 }
+
+function updateUserName () {
+  var newUserName = prompt(`Informe um novo nomde de usuario ${userName.innerHTML}`)
+  if (newUserName && newUserName != '') { 
+    userName.innerHTML = newUserName
+    showItem(loading)
+    firebase.auth().currentUser.updateProfile({
+      displayName: newUserName
+    }).catch((error) => {
+      alert(error)
+    }).finally(() => {  
+      hideItem(loading)
+    })
+  } else {
+    alert('insira algo')
+  }
+}
