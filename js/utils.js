@@ -7,63 +7,67 @@ var loading = document.getElementById('loading')
 var auth = document.getElementById('auth')
 var userContent = document.getElementById('userContent')
 var userEmail = document.getElementById('userEmail')
-var sendEmailVerificationDiv  = document.getElementById('sendEmailVerificationDiv')
-var emailVerified  = document.getElementById('emailVerified')
+var sendEmailVerificationDiv = document.getElementById('sendEmailVerificationDiv')
+var emailVerified = document.getElementById('emailVerified')
 var passwordReset = document.getElementById('passwordReset')
+var userName = document.getElementById('userName')
+var userImg = document.getElementById('userImg')
+
+var todoForm = document.getElementById('todoForm')
+
 
 // Alterar o formulário de autenticação para o cadastro de novas contas
 function toggleToRegister() {
   authForm.submitAuthForm.innerHTML = 'Cadastrar conta'
   authFormTitle.innerHTML = 'Insira seus dados para se cadastrar'
-  hideItem(register) // Ocultar o formulário de cadastro
-  hideItem(passwordReset) //Ocultar o campo de Reset de senha
-  showItem(access) // Exibir o formulário de acesso
-
+  hideItem(register) // Esconder atalho para cadastrar conta
+  hideItem(passwordReset) // Esconder a opção de redefinição de senha
+  showItem(access) // Mostrar atalho para acessar conta
 }
 
 // Alterar o formulário de autenticação para o acesso de contas já existentes
 function toggleToAccess() {
   authForm.submitAuthForm.innerHTML = 'Acessar'
   authFormTitle.innerHTML = 'Acesse a sua conta para continuar'
-  hideItem(access)  // Ocultar o formulário de cadastro de conta
-  showItem(register) // Exibir o formulário de acesso de conta
-  showItem(passwordReset) //Mostrar o campo de Reset de senha
-
+  hideItem(access) // Esconder atalho para acessar conta
+  showItem(passwordReset) // Mostrar a opção de redefinição de senha
+  showItem(register) // Mostrar atalho para cadastrar conta
 }
 
-// Simpplifica a exibição de elementos da página
+// Simplifica a exibição de elementos da página
 function showItem(element) {
   element.style.display = 'block'
 }
 
-// Simpplifica a remoção de elementos da página
+// Simplifica a remoção de elementos da página
 function hideItem(element) {
   element.style.display = 'none'
 }
 
-// Mostrar conteudo para usuarios de autenticação
+// Mostrar conteúdo para usuários autenticados
 function showUserContent(user) {
+  console.log(user)
   if (user.providerData[0].providerId != 'password') {
-    emailVerified.innerHTML = 'Autentificaçao por provedor confiavel'
+    emailVerified.innerHTML = 'Autenticação por provedor confiável, não é necessário verificar e-mail'
     hideItem(sendEmailVerificationDiv)
   } else {
-  if (user.emailVerified) {
-    emailVerified.innerHTML = 'Seu email está verificado'
-    hideItem(sendEmailVerificationDiv)
-   } else {
-    emailVerified.innerHTML = 'Seu email não está verificado'
-    showItem(sendEmailVerificationDiv)
-   }
- }
-    userImg.src = user.photoURL ?  user.photoURL  : 'img/unknownUser.png'
-    userName.innerHTML = user.displayName
-    userEmail.innerHTML = user.email
-    hideItem(auth)
-    showItem(userContent)
+    if (user.emailVerified) {
+      emailVerified.innerHTML = 'E-mail verificado'
+      hideItem(sendEmailVerificationDiv)
+    } else {
+      emailVerified.innerHTML = 'E-mail não verificado'
+      showItem(sendEmailVerificationDiv)
+    }
+  }
+  
+  userImg.src = user.photoURL ? user.photoURL : 'img/unknownUser.png'
+  userName.innerHTML = user.displayName
+  userEmail.innerHTML = user.email
+  hideItem(auth)
+  showItem(userContent)
 }
- 
 
-// Mostrar conteudo para usuarios nao autenticação
+// Mostrar conteúdo para usuários não autenticados
 function showAuth() {
   authForm.email.value = ''
   authForm.password.value = ''
@@ -71,25 +75,31 @@ function showAuth() {
   showItem(auth)
 }
 
-// Centralizar e traduzir erros
-function showError(prefix ,error) {
-  console.log(error.code);
+// centralizar e traduzir erros
+function showError(prefix, error) {
+  console.log(error.code)
   hideItem(loading)
+
   switch (error.code) {
-    case 'auth/invalid-email':
-    case 'auth/wrong-password': alert(prefix + ' ' + 'Email ou Senha invalida')
+    case 'auth/invalid-email': alert(prefix + ' ' + 'E-mail inválido!')
     break;
-    case 'auth/weak-password': alert(prefix + ' ' + 'Senha deve ter ao menos 6 caracteres')
+    case 'auth/wrong-password': alert(prefix + ' ' + 'Senha inválida!')
     break;
-    case 'auth/email-already-in-use': alert(prefix + ' ' + 'Email já esta em uso')
+    case 'auth/weak-password': alert(prefix + ' ' + 'Senha deve ter ao menos 6 caracteres!')
     break;
-    case 'auth/popup-closet-by-user': alert(prefix + ' ' + 'O popup de autentiificaçao foi fechado antes da operaçao ser concluida')
+    case 'auth/email-already-in-use': alert(prefix + ' ' + 'E-mail já está em uso por outra conta!')
     break;
+    case 'auth/popup-closed-by-user': alert(prefix + ' ' + 'O popup de autenticação foi fechado antes da operação ser concluída!')
+    break;   
   
     default: alert(prefix + ' ' + error.message)
   }
 }
 
+// Atributos extras de configuração de e-mail
 var actionCodeSettings = {
-  url: 'http://localhost:5500/'
+  url: 'https://todolist-aa7f1.firebaseapp.com'
 }
+
+var database = firebase.database()
+var dbRefUsers = database.ref('users')

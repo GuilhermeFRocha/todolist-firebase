@@ -13,9 +13,9 @@
       <img src="img/todoList.png">
     </div>
 
-    <!-- Feedback de Carregamento -->
+    <!--Feedback de carregamento (loading)-->
     <div id="loading">
-      <img src="img/loading.gif" alt="loading">
+      <img src="img/loading.gif" alt="Animação de carregamento">
     </div>
 
     <!--Conteúdo destinado para usuários não autenticados-->
@@ -33,11 +33,10 @@
         <button type="submit" id="submitAuthForm">Acessar</button>
       </form>
 
-
-      <!-- Possibilita a redefinição de senha -->
+      <!--Possibilita a redefiniação de senha-->
       <p id="passwordReset">
         Esqueceu a senha?
-        <button onclick="sendPasswordResetEmail()" class="alternative">Redefinir minha senha</button>
+        <button class="alternative" onclick="sendPasswordResetEmail()">Redefinir minha senha</button>
       </p>
 
       <!--Alternar o fomulário de autenticação para o cadastro de novas contas-->
@@ -52,11 +51,12 @@
         <button onclick="toggleToAccess()" class="alternative">Acesse a sua conta</button>
       </p>
 
+      <!--Outros provedores de autenticação-->
       <p>
-        Ou acesse usando: <br> 
-        <img src="img/google.png" alt="Logo Google" onclick="signInWithGoogle()">
-        <img src="img/github.png" alt="Logo Github" onclick="signInWithGitHub()">
-        <img src="img/facebook.png" alt="Logo Facebook" onclick="signInWithFacebook()">
+        Ou acesse usando:<br>
+        <img src="img/google.png" alt="Autenticação pelo Google" onclick="signInWithGoogle()">
+        <img src="img/github.png" alt="Autenticação pelo GitHub" onclick="signInWithGitHub()">
+        <img src="img/facebook.png" alt="Autenticação pelo Facebook" onclick="signInWithFacebook()">
       </p>
     </div>
 
@@ -69,22 +69,37 @@
         <p id="userEmail"></p>
         <p id="emailVerified"></p>
         <div id="sendEmailVerificationDiv">
-          <button  class="alternative" onclick="sendEmailVerification()">Verificar Email</button>
+          <button class="alternative" onclick="sendEmailVerification()">Verificar e-mail</button>
         </div>
-        <button class="alternative" onclick="updateUserName()">Atualizar o nome</button>
+        <button class="alternative" onclick="updateUserName()">Atualizar meu nome</button>
         <button class="alternative" onclick="signOut()">Sair</button>
-        <button class="danger" onclick="deleteUserAccount()">Remover</button>
+        <button class="danger" onclick="deleteUserAccount()">Excluir minha conta</button>
+      </div>
+
+      <hr>
+
+      <div class="center">
+        <!--Formulário de tarefas-->
+        <form id="todoForm">
+          <h3 id="todoFormTitle">Adicionar tarefa:</h3>
+          <label for="name">Tarefa: </label>
+          <input type="text" id="name" placeholder="Tarefa">
+          <button type="submit" id="submitTodoForm">Adicionar tarefa</button>
+        </form>
       </div>
     </div>
   </div>
 
-  <!--Recursos Firebase-->
+  <!--Recursos do Firebase-->
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-database.js"></script>
+
   
   <!--Nossa programação em JavaScript-->
-  <script src="js/utils.js"></script>
   <script src="js/firebase.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/todo.js"></script>
 </body>
 </html>
